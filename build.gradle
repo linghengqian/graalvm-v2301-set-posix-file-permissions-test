@@ -1,0 +1,46 @@
+plugins {
+    id 'java'
+    id 'org.graalvm.buildtools.native' version '0.9.26'
+}
+
+group = 'com.lingh'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.assertj:assertj-core:3.24.2'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+graalvmNative {
+    binaries {
+        test {
+            buildArgs.add("--initialize-at-build-time=org.junit.jupiter.api.condition.OS")
+        }
+    }
+    agent {
+        defaultMode = "conditional"
+        modes {
+            conditional {
+                userCodeFilterPath = "user-code-filter.json"
+                extraFilterPath = "extra-filter.json"
+            }
+        }
+        metadataCopy {
+            mergeWithExisting = true
+            inputTaskNames.add("test")
+            outputDirectories.add("src/test/resources/META-INF/native-image/com.lingh/graalvm-v2301-set-posix-file-permissions-test")
+        }
+    }
+    metadataRepository {
+        enabled = true
+    }
+}
