@@ -1,5 +1,8 @@
 ## graalvm-v2301-set-posix-file-permissions-test
 
+- For https://github.com/linghengqian/graalvm-trace-metadata-smoketest/commit/952c75870f61b2f611355a0b24bcd47cbdea6cac and https://github.com/oracle/graalvm-reachability-metadata/issues/206.
+- Also For https://github.com/oracle/graal/issues/7390 .
+
 - Execute the following command on the new Ubuntu 22.04.3 LTS instance.
 ```shell
 sudo apt install unzip zip curl sed -y
