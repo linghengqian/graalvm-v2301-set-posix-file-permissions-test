@@ -1,7 +1,6 @@
 {
   "resources":{
   "includes":[{
-    "condition":{"typeReachable":"com.lingh.ContestTest"},
     "pattern":"\\Qscript/demo.sh\\E"
   }]},
   "bundles":[]
